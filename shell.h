@@ -168,10 +168,10 @@ int _atoi(char *);
 
 /* toem_errors1.c */
 int _erratoi(char *);
-void print_error(info_t *, char *);
-int print_d(int, int);
-char *convert_number(long int, int, int);
-void remove_comments(char *);
+void prints_error(info_t *, char *);
+int prints_d(int, int);
+char *convert_num(long int, int, int);
+void no_comments(char *);
 
 /* toem_builtin.c */
 int _mexit(info_t *);
