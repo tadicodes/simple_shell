@@ -1,23 +1,23 @@
 #include "shell.h"
 
 /**
- * _myenv - prints environment
+ * _menv - prints environment
  * @info: contains potential arguments
  * Return: 0
  */
-int _myenv(info_t *info)
+int _menv(info_t *info)
 {
 	print_list_str(info->env);
 	return (0);
 }
 
 /**
- * _getenv - gets value of env variable
+ * _genv - gets value of env variable
  * @info: contains potential arguments
  * @name: env variable name
  * Return: value
  */
-char *_getenv(info_t *info, const char *name)
+char *_genv(info_t *info, const char *name)
 {
 	list_t *node = info->env;
 	char *p;
@@ -33,11 +33,11 @@ char *_getenv(info_t *info, const char *name)
 }
 
 /**
- * _mysetenv - initialize or modify env variable
+ * _msenv - initialize or modify env variable
  * @info: contains potential arguments
  *  Return: 0
  */
-int _mysetenv(info_t *info)
+int _msenv(info_t *info)
 {
 	if (info->argc != 3)
 	{
@@ -50,11 +50,11 @@ int _mysetenv(info_t *info)
 }
 
 /**
- * _myunsetenv - remove variable
+ * _munsenv - remove variable
  * @info: contains potential arguments
  * Return: 0
  */
-int _myunsetenv(info_t *info)
+int _munsenv(info_t *info)
 {
 	int i;
 
@@ -69,11 +69,11 @@ int _myunsetenv(info_t *info)
 }
 
 /**
- * populate_env_list - populate env ist
+ * pop_env_list - populate env ist
  * @info: contains potential arguments
  * Return: 0
  */
-int populate_env_list(info_t *info)
+int pop_env_list(info_t *info)
 {
 	list_t *node = NULL;
 	size_t i;

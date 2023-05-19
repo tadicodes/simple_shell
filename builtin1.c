@@ -47,9 +47,8 @@ int s_alias(info_t *info, char *str)
 	if (!p)
 		return (1);
 	if (!*++p)
-		return (unset_alias(info, str));
-
-	unset_alias(info, str);
+		return (us_alias(info, str));
+	us_alias(info, str);
 	return (add_node_end(&(info->alias), str, 0) == NULL);
 }
 
@@ -91,7 +90,7 @@ int _malias(info_t *info)
 		node = info->alias;
 		while (node)
 		{
-			print_alias(node);
+			p_alias(node);
 			node = node->next;
 		}
 		return (0);
@@ -100,9 +99,9 @@ int _malias(info_t *info)
 	{
 		p = _strchr(info->argv[i], '=');
 		if (p)
-			set_alias(info, info->argv[i]);
+			s_alias(info, info->argv[i]);
 		else
-			print_alias(node_starts_with(info->alias, info->argv[i], '='));
+			p_alias(node_starts_with(info->alias, info->argv[i], '='));
 	}
 	return (0);
 }
