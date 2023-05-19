@@ -161,8 +161,8 @@ void *_realloc(void *, unsigned int, unsigned int);
 int bfree(void **);
 
 /* toem_atoi.c */
-int interactive(info_t *);
-int is_delim(char, char *);
+int inter(info_t *);
+int is_delimeter(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
@@ -174,9 +174,9 @@ char *convert_number(long int, int, int);
 void remove_comments(char *);
 
 /* toem_builtin.c */
-int _myexit(info_t *);
-int _mycd(info_t *);
-int _myhelp(info_t *);
+int _mexit(info_t *);
+int _mecd(info_t *);
+int _chcdir(info_t *);
 
 /* toem_builtin1.c */
 int _myhistory(info_t *);
