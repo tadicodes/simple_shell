@@ -179,8 +179,8 @@ int _mecd(info_t *);
 int _chcdir(info_t *);
 
 /* toem_builtin1.c */
-int _myhistory(info_t *);
-int _myalias(info_t *);
+int _mehistory(info_t *);
+int _mealias(info_t *);
 
 /*toem_getline.c */
 ssize_t get_input(info_t *);
