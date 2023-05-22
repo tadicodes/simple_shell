@@ -39,7 +39,7 @@ int _mecd(info_t *info)
 
 	s = getcwd(buffer, 1024);
 	if (!s)
-		_puts("TODO: >>getcwd failure msg here<<\n");
+		_putss("TODO: >>getcwd failure msg here<<\n");
 	if (!info->argv[1])
 	{
 		dir = _genv(info, "HOME=");
@@ -49,15 +49,15 @@ int _mecd(info_t *info)
 		else
 			chdir_ret = chdir(dir);
 	}
-	else if (_strcmp(info->argv[1], "-") == 0)
+	else if (_strcomp(info->argv[1], "-") == 0)
 	{
 		if (!_genv(info, "OLDPWD="))
 		{
-			_puts(s);
+			_putss(s);
 			_putchar('\n');
 			return (1);
 		}
-		_puts(_genv(info, "OLDPWD=")), _putchar('\n');
+		_putss(_genv(info, "OLDPWD=")), _putchar('\n');
 		chdir_ret =
 			chdir((dir = _genv(info, "OLDPWD=")) ? dir : "/");
 	}
@@ -70,8 +70,8 @@ int _mecd(info_t *info)
 	}
 	else
 	{
-		_setenv(info, "OLDPWD", _genv(info, "PWD="));
-		_setenv(info, "PWD", getcwd(buffer, 1024));
+		_setenvi(info, "OLDPWD", _genv(info, "PWD="));
+		_setenvi(info, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);
 }

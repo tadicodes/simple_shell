@@ -7,7 +7,7 @@
  */
 int _menv(info_t *info)
 {
-	print_list_str(info->env);
+	pr_list_str(info->env);
 	return (0);
 }
 
@@ -24,7 +24,7 @@ char *_genv(info_t *info, const char *name)
 
 	while (node)
 	{
-		p = starts_with(node->str, name);
+		p = start_with(node->str, name);
 		if (p && *p)
 			return (p);
 		node = node->next;
@@ -44,7 +44,7 @@ int _msenv(info_t *info)
 		_meputs("Incorrect number of arguements\n");
 		return (1);
 	}
-	if (_setenv(info, info->argv[1], info->argv[2]))
+	if (_setenvi(info, info->argv[1], info->argv[2]))
 		return (0);
 	return (1);
 }
@@ -64,7 +64,7 @@ int _munsenv(info_t *info)
 		return (1);
 	}
 	for (i = 1; i <= info->argc; i++)
-		_unsetenv(info, info->argv[i]);
+		_unsetenvi(info, info->argv[i]);
 	return (0);
 }
 
@@ -79,7 +79,7 @@ int pop_env_list(info_t *info)
 	size_t i;
 
 	for (i = 0; environ[i]; i++)
-		add_node_end(&node, environ[i], 0);
+		plus_node_end(&node, environ[i], 0);
 	info->env = node;
 	return (0);
 }
