@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * _erratoi - converts string to integer
+ * _erratoi - converts string to int
  * @s: string to be converted
- * Return: 0 if no numbers in string, -1 error
+ * Return: 0 if no numbers in, converted number otherwise, -1 error
  */
 int _erratoi(char *s)
 {
@@ -11,7 +11,7 @@ int _erratoi(char *s)
 	unsigned long int result = 0;
 
 	if (*s == '+')
-		s++;
+		s++;  /* TODO: why does this make main return 255? */
 	for (i = 0;  s[i] != '\0'; i++)
 	{
 		if (s[i] >= '0' && s[i] <= '9')
@@ -24,40 +24,41 @@ int _erratoi(char *s)
 		else
 			return (-1);
 	}
+
 	return (result);
 }
 
 /**
- * prints_error - prints an error message
- * @info: parameter & return info struct
- * @estr: string containing error type
- * Return: 0 if no numbers in string, -1 error
+ * print_error - prints error message
+ * @info: parameter & return info
+ * @estr: string with specified error type
+ * Return: 0 for no numbers, otherwise changed num, -1error
  */
-void prints_error(info_t *info, char *estr)
+void print_error(info_t *info, char *estr)
 {
-	_meputs(info->fname);
-	_meputs(": ");
-	prints_d(info->line_count, STDERR_FILENO);
-	_meputs(": ");
-	_meputs(info->argv[0]);
-	_meputs(": ");
-	_meputs(estr);
+	_eputs(info->fname);
+	_eputs(": ");
+	print_d(info->line_count, STDERR_FILENO);
+	_eputs(": ");
+	_eputs(info->argv[0]);
+	_eputs(": ");
+	_eputs(estr);
 }
 
 /**
- * prints_d - prints decimal (integer) number (base 10)
+ * print_d - print decimal (integer) number (base 10)
  * @input: input
- * @fd: filedescriptor to write to
- * Return: number of characters
+ * @fd: file descriptor
+ * Return: number of chars
  */
-int prints_d(int input, int fd)
+int print_d(int input, int fd)
 {
 	int (*__putchar)(char) = _putchar;
 	int i, count = 0;
 	unsigned int _abs_, current;
 
 	if (fd == STDERR_FILENO)
-		__putchar = _meputchar;
+		__putchar = _eputchar;
 	if (input < 0)
 	{
 		_abs_ = -input;
@@ -83,13 +84,13 @@ int prints_d(int input, int fd)
 }
 
 /**
- * convert_num - converter function, a clone of itoa
+ * convert_number - converter, clone of itoa
  * @num: number
  * @base: base
- * @flags: argument flags
+ * @flags: argument flag
  * Return: string
  */
-char *convert_num(long int num, int base, int flags)
+char *convert_number(long int num, int base, int flags)
 {
 	static char *array;
 	static char buffer[50];
@@ -118,11 +119,11 @@ char *convert_num(long int num, int base, int flags)
 }
 
 /**
- * no_comments - replaces first instance of '#' with '\0'
- * @buf: address of string to modify
+ * remove_comments - replaces first instance of '#' with '\0'
+ * @buf: address of string
  * Return: 0;
  */
-void no_comments(char *buf)
+void remove_comments(char *buf)
 {
 	int i;
 
