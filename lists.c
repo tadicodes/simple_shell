@@ -1,14 +1,13 @@
 #include "shell.h"
 
 /**
- * plus_node - adds a node to the start of the list
- * @head: the address of pointer to head node
+ * add_node - add node to start list
+ * @head: address of pointer to the head node
  * @str: str field of node
- * @num: the node index used by history
- *
- * Return: size of list
+ * @num: node index used
+ * Return: size of the list
  */
-list_t *plus_node(list_t **head, const char *str, int num)
+list_t *add_node(list_t **head, const char *str, int num)
 {
 	list_t *new_head;
 
@@ -30,18 +29,18 @@ list_t *plus_node(list_t **head, const char *str, int num)
 	}
 	new_head->next = *head;
 	*head = new_head;
+
 	return (new_head);
 }
 
 /**
- * plus_node_end - adds a node to the end of the list
+ * add_node_end - add node to end of list
  * @head: the address of pointer to head node
  * @str: str field of node
  * @num: the node index used by history
- *
- * Return: size of list
+ * Return: size of the list
  */
-list_t *plus_node_end(list_t **head, const char *str, int num)
+list_t *add_node_end(list_t **head, const char *str, int num)
 {
 	list_t *new_node, *node;
 
@@ -71,16 +70,16 @@ list_t *plus_node_end(list_t **head, const char *str, int num)
 	}
 	else
 		*head = new_node;
+
 	return (new_node);
 }
 
 /**
- * pr_list_str - prints only the str element of a list_t linked list
- * @h: pointer to first node
- *
- * Return: size of list
+ * print_list_str - prints only the str element of linked list
+ * @h: pointer to the first node
+ * Return: size of the list
  */
-size_t pr_list_str(const list_t *h)
+size_t print_list_str(const list_t *h)
 {
 	size_t i = 0;
 
@@ -91,17 +90,17 @@ size_t pr_list_str(const list_t *h)
 		h = h->next;
 		i++;
 	}
+
 	return (i);
 }
 
 /**
- * del_node_at_index - deletes node at given index
+ * delete_node_at_index - delete node at index
  * @head: the address of pointer to first node
- * @index: the index of node to delete
- *
- * Return: 1 on success, 0 on failure
+ * @index: index of the node to delete
+ * Return: 1 success, 0 failure
  */
-int del_node_at_index(list_t **head, unsigned int index)
+int delete_node_at_index(list_t **head, unsigned int index)
 {
 	list_t *node, *prev_node;
 	unsigned int i = 0;
@@ -131,16 +130,16 @@ int del_node_at_index(list_t **head, unsigned int index)
 		prev_node = node;
 		node = node->next;
 	}
+
 	return (0);
 }
 
 /**
- * fr_list - frees all nodes of a list
- * @head_ptr: the address of pointer to head node
- *
+ * free_list - frees all nodes
+ * @head_ptr: address of pointer
  * Return: void
  */
-void fr_list(list_t **head_ptr)
+void free_list(list_t **head_ptr)
 {
 	list_t *node, *next_node, *head;
 

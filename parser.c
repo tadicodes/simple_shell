@@ -1,11 +1,10 @@
 #include "shell.h"
 
 /**
- * its_cmd - this determines if a file is an executable command
- * @info: the info struct
- * @path: is the path to the file
- *
- * Return: 1 if true, 0 otherwise
+ * its_cmd - determines if file is executable command
+ * @info: info structure
+ * @path: path to file
+ * Return: 1 true, 0 not
  */
 int its_cmd(info_t *info, char *path)
 {
@@ -13,24 +12,25 @@ int its_cmd(info_t *info, char *path)
 
 	(void)info;
 	if (!path || stat(path, &st))
+
 		return (0);
 
 	if (st.st_mode & S_IFREG)
 	{
 		return (1);
 	}
+
 	return (0);
 }
 
 /**
- * dupe_chars - duplicates characters
- * @pathstr: the PATH string
- * @start: the starting index
- * @stop: the stopping index
- *
- * Return: pointer to new buffer
+ * dup_chars - duplicate chars
+ * @pathstr: PATH string
+ * @start: starting index
+ * @stop: stopping index
+ * Return: pointer of buffer
  */
-char *dupe_chars(char *pathstr, int start, int stop)
+char *dup_chars(char *pathstr, int start, int stop)
 {
 	static char buf[1024];
 	int i = 0, k = 0;
@@ -39,18 +39,18 @@ char *dupe_chars(char *pathstr, int start, int stop)
 		if (pathstr[i] != ':')
 			buf[k++] = pathstr[i];
 	buf[k] = 0;
+
 	return (buf);
 }
 
 /**
- * finds_path - finds this cmd in the PATH string
- * @info: is the info struct
- * @pathstr: is the PATH string
- * @cmd: is the cmd to find
- *
- * Return: full path of cmd if found or NULL
+ * find_path - finds cmd in PATH string
+ * @info: info structure
+ * @pathstr: the PATH strings
+ * @cmd: cmd to get
+ * Return: full path of cmd if found else NULL
  */
-char *finds_path(info_t *info, char *pathstr, char *cmd)
+char *find_path(info_t *info, char *pathstr, char *cmd)
 {
 	int i = 0, curr_pos = 0;
 	char *path;
@@ -66,7 +66,7 @@ char *finds_path(info_t *info, char *pathstr, char *cmd)
 	{
 		if (!pathstr[i] || pathstr[i] == ':')
 		{
-			path = dupe_chars(pathstr, curr_pos, i);
+			path = dup_chars(pathstr, curr_pos, i);
 			if (!*path)
 				_strcat(path, cmd);
 			else
@@ -82,5 +82,6 @@ char *finds_path(info_t *info, char *pathstr, char *cmd)
 		}
 		i++;
 	}
+
 	return (NULL);
 }
