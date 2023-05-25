@@ -2,18 +2,19 @@
 
 /**
  * _mehistory - displays the history list
- * @info: structure with potential arguments
+ * @info: structure with potential arg
  *  Return: 0
  */
 int _mehistory(info_t *info)
 {
-	prints_list(info->history);
+	print_list(info->history);
+
 	return (0);
 }
 
 /**
  * unset_alias - set alias to string
- * @info: the parameter struct
+ * @info: parameter struct
  * @str: string alias
  * Return: 0 success, 1 error
  */
@@ -27,16 +28,18 @@ int unset_alias(info_t *info, char *str)
 		return (1);
 	c = *p;
 	*p = 0;
-	ret = del_node_at_index(&(info->alias),
-		g_node_index(info->alias, node_start_with(info->alias, str, -1)));
+	ret = delete_node_at_index(&(info->alias),
+		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
 	*p = c;
+
 	return (ret);
 }
 
 /**
- * set_alias - set alias to string
- * @info: the parameter struct
+ * set_alias - sets alias to string
+ * @info: parameter struct
  * @str: string alias
+ *
  * Return: 0 success, 1 error
  */
 int set_alias(info_t *info, char *str)
@@ -47,21 +50,16 @@ int set_alias(info_t *info, char *str)
 	if (!p)
 		return (1);
 	if (!*++p)
-<<<<<<< HEAD
 		return (unset_alias(info, str));
 
 	unset_alias(info, str);
+
 	return (add_node_end(&(info->alias), str, 0) == NULL);
-=======
-		return (us_alias(info, str));
-	us_alias(info, str);
-	return (plus_node_end(&(info->alias), str, 0) == NULL);
->>>>>>> ad36e473b27100ceabff0b76c8bcbf20afad3c3b
 }
 
 /**
- * print_alias - print alias string
- * @node: the alias node
+ * print_alias - this prints alias string
+ * @node: the alias nod
  * Return: 0 success, 1 error
  */
 int print_alias(list_t *node)
@@ -74,16 +72,17 @@ int print_alias(list_t *node)
 		for (a = node->str; a <= p; a++)
 		_putchar(*a);
 		_putchar('\'');
-		_putss(p + 1);
-		_putss("'\n");
+		_puts(p + 1);
+		_puts("'\n");
 		return (0);
 	}
+
 	return (1);
 }
 
 /**
- * _mealias - mimics alias builtin (man alias)
- * @info: structure with potential arguments
+ * _mealias - mimic alias builtin (man alias)
+ * @info: structure with potential arg
  *  Return: 0
  */
 int _mealias(info_t *info)
@@ -108,12 +107,7 @@ int _mealias(info_t *info)
 		if (p)
 			set_alias(info, info->argv[i]);
 		else
-<<<<<<< HEAD
 			print_alias(node_starts_with(info->alias, info->argv[i], '='));
-=======
-			p_alias(node_start_with(info->alias, info->argv[i], '='));
->>>>>>> ad36e473b27100ceabff0b76c8bcbf20afad3c3b
 	}
-
 	return (0);
 }

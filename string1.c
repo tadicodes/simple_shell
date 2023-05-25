@@ -1,13 +1,12 @@
 #include "shell.h"
 
 /**
- * _stricpy - this copies a string
- * @dest: the destination
- * @src: the source
- *
- * Return: a pointer to destination
+ * _strcpy - copy string
+ * @dest: destination
+ * @src: the sourc
+ * Return: pointer to dest
  */
-char *_stricpy(char *dest, char *src)
+char *_strcpy(char *dest, char *src)
 {
 	int i = 0;
 
@@ -19,16 +18,16 @@ char *_stricpy(char *dest, char *src)
 		i++;
 	}
 	dest[i] = 0;
+
 	return (dest);
 }
 
 /**
- * _strdupe - it duplicates a string
- * @str: the string to duplicate
- *
- * Return: pointer to the duplicated string
+ * _strdup - dupe a string
+ * @str: the string to dupe
+ * Return: pointer to the dupe string
  */
-char *_strdupe(const char *str)
+char *_strdup(const char *str)
 {
 	int length = 0;
 	char *ret;
@@ -42,20 +41,21 @@ char *_strdupe(const char *str)
 		return (NULL);
 	for (length++; length--;)
 		ret[length] = *--str;
+
 	return (ret);
 }
 
 /**
- * _putss - it prints an input string
- * @str: the string to be printed
- *
- * Return: Nothing
+ * _puts - printz an input string
+ * @str: string to prin
+ * Return: non
  */
-void _putss(char *str)
+void _puts(char *str)
 {
 	int i = 0;
 
 	if (!str)
+
 		return;
 	while (str[i] != '\0')
 	{
@@ -65,11 +65,9 @@ void _putss(char *str)
 }
 
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * _putchar - writes the char c to stdout
+ * @c: le char to print
+ * Return: success 1 on error, -1 and errno is set
  */
 int _putchar(char c)
 {
@@ -83,5 +81,6 @@ int _putchar(char c)
 	}
 	if (c != BUF_FLUSH)
 		buf[i++] = c;
+
 	return (1);
 }
