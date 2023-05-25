@@ -1,20 +1,21 @@
 #include "shell.h"
 
 /**
- * _meenv - print current environment
- * @info: structure with potential arguments
+ * _meenv - put out the current envi
+ * @info: Structure with potential args
  * Return: 0
  */
 int _meenv(info_t *info)
 {
-	pr_list_str(info->env);
+	print_list_str(info->env);
+
 	return (0);
 }
 
 /**
  * _getenv - gets value of environ variable
- * @info: structure with potential arguments
- * @name: env variable name
+ * @info: structure with potential args
+ * @name: environ var name
  * Return: value
  */
 char *_getenv(info_t *info, const char *name)
@@ -24,7 +25,7 @@ char *_getenv(info_t *info, const char *name)
 
 	while (node)
 	{
-		p = start_with(node->str, name);
+		p = starts_with(node->str, name);
 		if (p && *p)
 			return (p);
 		node = node->next;
@@ -33,9 +34,9 @@ char *_getenv(info_t *info, const char *name)
 }
 
 /**
- * _mesetenv - initialize new environment variable
- * @info: structure with potential arguments
- *  Return: Always 0
+ * _mesetenv - initialize a new environ var
+ * @info: structure with potential args
+ *  Return: 0
  */
 int _mesetenv(info_t *info)
 {
@@ -44,15 +45,15 @@ int _mesetenv(info_t *info)
 		_eputs("Incorrect number of arguements\n");
 		return (1);
 	}
-	if (_setenvi(info, info->argv[1], info->argv[2]))
+	if (_setenv(info, info->argv[1], info->argv[2]))
 		return (0);
 	return (1);
 }
 
 /**
- * _meunsetenv - remove environment variable
- * @info: structure with potential arguments
- * Return: Always 0
+ * _meunsetenv - remove environment var
+ * @info: structure with potential args
+ * Return: 0
  */
 int _meunsetenv(info_t *info)
 {
@@ -64,18 +65,14 @@ int _meunsetenv(info_t *info)
 		return (1);
 	}
 	for (i = 1; i <= info->argc; i++)
-<<<<<<< HEAD
 		_unsetenv(info, info->argv[i]);
 
-=======
-		_unsetenvi(info, info->argv[i]);
->>>>>>> ad36e473b27100ceabff0b76c8bcbf20afad3c3b
 	return (0);
 }
 
 /**
- * populate_env_list - populate env linked list
- * @info: structure with potential arguments
+ * populate_env_list - populates the env linked list
+ * @info: structure with potential args
  * Return: 0
  */
 int populate_env_list(info_t *info)
@@ -84,7 +81,8 @@ int populate_env_list(info_t *info)
 	size_t i;
 
 	for (i = 0; environ[i]; i++)
-		plus_node_end(&node, environ[i], 0);
+		add_node_end(&node, environ[i], 0);
 	info->env = node;
+
 	return (0);
 }

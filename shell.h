@@ -204,9 +204,9 @@ int renumber_history(info_t *info);
 
 /* environ.c */
 char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
+int _meenv(info_t *);
+int _mesetenv(info_t *);
+int _meunsetenv(info_t *);
 int populate_env_list(info_t *);
 
 /* lists1.c */
